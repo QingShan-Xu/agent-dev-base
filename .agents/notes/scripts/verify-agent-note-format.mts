@@ -35,6 +35,39 @@ const REQUIRED: Record<string, string[]> = {
 
 const BANNED_IMPLEMENTED = /^## (?:Proposal\b|Plan\b|Migration plan\b|Acceptance criteria\b)/i
 
+/**
+ * Drop CommonMark fences and the lines inside them. A fence is 0–3 spaces, then
+ * three or more backticks or tildes. The closing fence uses the same character
+ * and at least as many. A backtick fence does not open when the info string
+ * contains a backtick.
+ */
+function proseOutsideFences(lines: string[]): string[] {
+  let fence: { char: string; len: number } | null = null
+  const prose: string[] = []
+  for (const line of lines) {
+    const match = /^( {0,3})(`{3,}|~{3,})(.*)$/.exec(line)
+    if (match) {
+      const marker = match[2] ?? ''
+      const rest = match[3] ?? ''
+      const char = marker[0] ?? ''
+      if (fence === null) {
+        if (char === '`' && rest.includes('`')) {
+          prose.push(line)
+        } else {
+          fence = { char, len: marker.length }
+        }
+        continue
+      }
+      if (char === fence.char && marker.length >= fence.len && rest.trim() === '') {
+        fence = null
+      }
+      continue
+    }
+    if (fence === null) prose.push(line)
+  }
+  return prose
+}
+
 const { notes, errors } = walkAgentNoteTree()
 
 for (const note of notes) {
@@ -43,14 +76,7 @@ for (const note of notes) {
   }
   const text = readFileSync(resolve(agentNoteRoot, note.rel), 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n')
   const lines = text.split('\n')
-  let inFence = false
-  const prose = lines.filter((line) => {
-    if (line.startsWith('```')) {
-      inFence = !inFence
-      return false
-    }
-    return !inFence
-  })
+  const prose = proseOutsideFences(lines)
 
   if (!/^# Agent Note: \S/.test(lines[0] ?? '')) fail('line 1 must be `# Agent Note: <title>`')
   if ((lines[1] ?? undefined) !== '') fail('line 2 must be blank')

@@ -1,16 +1,21 @@
 ---
 name: retrofit-agent-collab
 description: >-
-  Fill an existing repository so coding agents can work in it. Use when given
-  a path to a repo that should gain AGENTS.md, an architecture index,
-  LESSONS.md, code-standards, or dsh-style Agent Notes. Follow the steps in
-  order. Do not use this to clone a skeleton, start a new product, or add
-  hooks, CI, review bots, or extra skills.
+  Fill an existing repository with three pipelines: Agent Notes, LESSONS to
+  code-standards, and a commit-acceptance skill. Use when given a path to a
+  repo that should gain that skeleton. Follow the steps in order. Do not copy
+  this skill into the target, and do not add hooks, CI, or review bots.
 ---
 
 # Retrofit a repo for coding-agent collaboration
 
-Fill the skeleton below in an existing repo. The steps are the whole job. Templates are the bytes you copy. The scripts are the note gates you copy. Do not add files this document does not name.
+Install three pipelines in an existing repo. Each pipeline has one home. Root `AGENTS.md` only links to those homes.
+
+1. **Decision** — `.agents/notes/` and the verify scripts under `.agents/notes/scripts/`.
+2. **Lessons** — `LESSONS.md` and `docs/code-standards.md`. The promote rule stays in `LESSONS.md`.
+3. **Commit acceptance** — `.agents/skills/commit-acceptance/SKILL.md`.
+
+The steps below are the whole job. Templates are the bytes you copy. The scripts are the note gates you copy. Do not add files this document does not name.
 
 ## Contract
 
@@ -26,7 +31,7 @@ Fill the skeleton below in an existing repo. The steps are the whole job. Templa
 
 Do not do any of the following, even if the target looks bare:
 
-- Do not copy `.agents/skills/` or this skill into `TARGET`.
+- Do not copy this skill (`retrofit-agent-collab`) into `TARGET`. The only skill you install is `commit-acceptance`, and only from the file mapping.
 - Do not create `docs/subsystems/`.
 - Do not add GitHub Actions, other CI, git hooks, Husky, lint-staged, CODEOWNERS, or review bots.
 - Do not add `--match-head-commit`, a required head pin, or a one-session-one-worktree rule.
@@ -36,7 +41,7 @@ Do not do any of the following, even if the target looks bare:
 - Do not add a sample Agent Note. The publish repo's example note is not a template.
 - Do not overwrite an existing file. The exceptions are Step 5 and Step 6, and they are narrow.
 - Do not delete files.
-- Do not commit unless the user asked. If you commit, use the commit-body shape already in the `AGENTS.md` template.
+- Do not commit unless the user asked. If you commit, follow `templates/skills/commit-acceptance/SKILL.md` (the same text you copy into TARGET).
 
 ## Fill rules
 
@@ -66,8 +71,13 @@ Classes: `feature`, `bug-fix`, `simplification`, `architecture`, `process`, `tes
 | `scripts/agent-note-tree.mts` | `.agents/notes/scripts/agent-note-tree.mts` |
 | `scripts/verify-agent-note-format.mts` | `.agents/notes/scripts/verify-agent-note-format.mts` |
 | `scripts/verify-agent-note-classification.mts` | `.agents/notes/scripts/verify-agent-note-classification.mts` |
+| `templates/skills/commit-acceptance/SKILL.md` | `.agents/skills/commit-acceptance/SKILL.md` |
 
 `templates/CLAUDE.md.SYMLINK` is not copied. Its single line is the symlink target used in Step 4 (`AGENTS.md`).
+
+## README name
+
+The `README.md` row is `present` when the target root already has a file whose name equals `readme.md` in a case-insensitive comparison. `readme.md` and `Readme.md` count. Do not copy the template, and do not rename the existing file. If both `readme.md` and `README.md` exist, leave both and do not overwrite either. Every other destination in the mapping is case-sensitive.
 
 ## Algorithm
 
@@ -75,7 +85,7 @@ Classes: `feature`, `bug-fix`, `simplification`, `architecture`, `process`, `tes
 
 Record this inventory in your notes for the report. Do not write it into `TARGET` as a new file.
 
-For every destination in the file mapping, record `present` or `missing`. A symlink counts as present.
+For every destination in the file mapping, record `present` or `missing`. A symlink counts as present. Apply [README name](#readme-name) before recording the `README.md` row.
 
 Also record:
 
@@ -93,11 +103,13 @@ Create `.agents/notes/scripts/` if it is missing.
 
 Create `docs/` if it is missing.
 
-Do not create any other directory.
+Create `.agents/skills/commit-acceptance/` if it is missing.
+
+Do not create any other directory. Do not create `.agents/skills/retrofit-agent-collab/`.
 
 ### Step 3 — Copy missing files
 
-For each row in the file mapping, if the destination is `missing`, copy the source bytes to the destination and record `Created`. If the destination is `present`, record `Kept` and do not open it.
+For each row in the file mapping, if the destination is `missing`, copy the source bytes to the destination and record `Created`. If the destination is `present`, record `Kept` and do not open it. The `README.md` row stays `present` under [README name](#readme-name) when the root file is `readme.md` or `Readme.md`.
 
 Remember whether this step created `docs/architecture-index.md`. Step 6 runs only then.
 
@@ -186,9 +198,16 @@ Git: <yes or no>
 ### Kept
 ### Wired
 ### Human must fill
+### Pipelines
 ### Gate
 ### Not tried
 ```
+
+`Pipelines` names the three homes. For each, write `created` when every mapped file of that pipeline was created this run, `kept` when every one was already present, or `mixed` and rely on Created and Kept for the paths.
+
+- Decision: `.agents/notes/` (notes tree and `.agents/notes/scripts/`)
+- Lessons: `LESSONS.md`, `docs/code-standards.md`
+- Commit acceptance: `.agents/skills/commit-acceptance/SKILL.md`
 
 `Human must fill` includes:
 
@@ -198,7 +217,7 @@ Git: <yes or no>
 - `CLAUDE.md` when Step 4 left it for a human
 - gate failures on notes that were already present
 
-`Not tried` is the non-goals list: skill pack, `docs/subsystems/`, hooks, CI, CODEOWNERS, review bots, `--match-head-commit`, one worktree per session, invented modules.
+`Not tried` is the non-goals list: copying `retrofit-agent-collab` into TARGET, `docs/subsystems/`, hooks, CI, CODEOWNERS, review bots, `--match-head-commit`, one worktree per session, invented modules.
 
 ## Optional parent-directory AGENTS.md
 

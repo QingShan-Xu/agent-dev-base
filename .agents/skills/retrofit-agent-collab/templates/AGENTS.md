@@ -15,21 +15,7 @@ Each fact has one home. Other files link to that home.
 | A stable rule promoted from a lesson | [docs/code-standards.md](docs/code-standards.md) |
 | Human overview | [README.md](README.md) |
 
-## Commit body
-
-When you commit, record what you ran and what you did not run:
-
-```
-What ran:
-- <command>: <result>
-
-Not tried:
-- <check>: <why>
-```
-
-## Notes and lessons
-
-A lasting why goes in `.agents/notes/` in the same change. A post-hoc failure goes in [LESSONS.md](LESSONS.md). Promote only by the rule in that file. Stable rules live in [docs/code-standards.md](docs/code-standards.md).
+Commit acceptance: [.agents/skills/commit-acceptance/SKILL.md](.agents/skills/commit-acceptance/SKILL.md).
 
 ## Nested AGENTS.md
 

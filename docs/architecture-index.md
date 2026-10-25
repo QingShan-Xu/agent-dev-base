@@ -14,6 +14,7 @@ Standing orders: [AGENTS.md](../AGENTS.md).
 | Lesson drafts, and when a draft is promoted | [LESSONS.md](../LESSONS.md) |
 | Stable coding rules | [code-standards.md](code-standards.md) |
 | Decision rationale, note format, lifecycle, classes | [.agents/notes/README.md](../.agents/notes/README.md) |
+| Commit acceptance | [.agents/skills/commit-acceptance/SKILL.md](../.agents/skills/commit-acceptance/SKILL.md) |
 | Shape of a repo after the skill runs | [examples/after-retrofit.md](../examples/after-retrofit.md) |
 
 ## Payload and installed copies
@@ -26,6 +27,7 @@ These pairs must stay byte-identical. The left path is what the skill copies int
 | `.agents/skills/retrofit-agent-collab/templates/docs/code-standards.md` | `docs/code-standards.md` |
 | `.agents/skills/retrofit-agent-collab/templates/notes/` | `.agents/notes/` except `proposed/process/2026-10-25-zh-notes-readme-later.md` and except `scripts/` |
 | `.agents/skills/retrofit-agent-collab/scripts/` | `.agents/notes/scripts/` |
+| `.agents/skills/retrofit-agent-collab/templates/skills/commit-acceptance/SKILL.md` | `.agents/skills/commit-acceptance/SKILL.md` |
 
 `templates/AGENTS.md` is the generic standing orders. Root `AGENTS.md` is that text plus the section `This repository`.
 

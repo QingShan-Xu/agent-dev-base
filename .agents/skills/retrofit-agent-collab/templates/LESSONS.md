@@ -21,14 +21,14 @@ Rule candidate:
 Not tried:
 ```
 
-`Seen:` is the first day this failure was observed. When the same failure shows up again on a later day, add another `Seen:` line under the first. Do not change the original `Seen:` line.
+`Seen:` is one calendar day this failure was observed. When the same failure shows up again on a different calendar day, add another `Seen:` line. Do not change an earlier `Seen:` line. A second line with the same date counts as the same day.
 
 ## When to promote
 
-Promote only when both are true:
+A lesson promotes when it has been Seen on at least 3 different calendar days, and both of these are still true:
 
-1. The draft's `Status` is still `draft`, and the rule candidate is still right.
-2. The earliest and latest `Seen:` dates are at least 3 calendar days apart. Same-day repeats do not count. A draft with one `Seen:` line stays a draft.
+1. The draft's `Status` is `draft`, and the rule candidate is still right.
+2. The `Seen:` lines name at least 3 different calendar days. Two lines that share a date count as one day. Fewer than 3 different dates stays a draft.
 
 Then:
 

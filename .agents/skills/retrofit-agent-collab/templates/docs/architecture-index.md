@@ -14,6 +14,7 @@ Standing orders: [AGENTS.md](../AGENTS.md).
 | Stable coding rules | [code-standards.md](code-standards.md) |
 | Decision rationale, note format, lifecycle, classes | [.agents/notes/README.md](../.agents/notes/README.md) |
 | Note path and header gates | [.agents/notes/scripts/](../.agents/notes/scripts/) |
+| Commit acceptance | [.agents/skills/commit-acceptance/SKILL.md](../.agents/skills/commit-acceptance/SKILL.md) |
 
 ## What is in the tree
 
