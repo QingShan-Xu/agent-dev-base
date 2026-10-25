@@ -1,21 +1,40 @@
 # agent-dev-base
 
-一套**通用的 coding-agent 开发底座**：给「人 + 外部 coding agent」一起养代码仓用的工程骨架，不是又一个面向终端用户的 agent 产品。
+这是一个**技能的发布和维护仓库**。
 
-## 要干嘛（一句话）
+技能只做一件事：拿**任何一个已经存在的仓库**，按固定步骤补上 coding agent 协作要用的文件。人读 `README.md`，agent 读 `AGENTS.md`。
 
-把我们从 dsh / OpenClaw / goose / magpie 里挖到的共性，收成**可 clone、可改、可长规矩**的最小约定，让新仓不用从零发明「怎么少让 agent 翻车」。
+它不是业务模板，也不是「把本仓克隆出来当新项目的骨架」。
 
-## 更直白一点
+## 装进目标仓的东西
 
-- **不是**：聊天机器人、ACP 产品功能、模型路由、菜单栏网关。
-- **是**：仓库里那一层——agent 读什么、怎么证明验过了、翻车怎么记下来、记满怎么变成硬规矩、合入怎么钉住审过的 head。
-- **默认抄的节奏**：薄 `AGENTS.md` 入口 → 提交正文写清「跑了什么 / Not tried」→ 夜间 `LESSONS` 复盘 → 连见多日升格进 `code-standards`；skills / hook / 审查 bot 按痛点再加，不一次性堆满。
+- `AGENTS.md`：给 agent 的长期规矩，只放链接，不抄细则。
+- `CLAUDE.md`：指向 `AGENTS.md` 的符号链接。
+- `docs/architecture-index.md`：仓库里有什么、哪份文件说了算。
+- `LESSONS.md`：事后失败的草稿。升格条件以该文件为准：同一条草稿最早和最晚的 Seen 至少相隔 3 个日历日，才把规则候选写进 `docs/code-standards.md`。
+- `.agents/notes/`：决策的为什么、放弃了什么。目录、Status 行、必备小节由脚本检查。
 
-## 本仓现状
+两套回溯都留着。notes 记决策，LESSONS 记翻车。一条事实只放一个家，别的文件用链接指过去。
 
-刚建好空壳。下一步会往里塞最小可运行骨架（`AGENTS.md`、`LESSONS.md`、`docs/code-standards.md` 模板，以及可选的 CI / hook 开关说明）。
+## 不装的东西
 
-## 参考来源（研究笔记，不在本仓）
+hooks、CI、CODEOWNERS、审查 bot、`--match-head-commit`、一个会话一个 worktree、`docs/subsystems/`、额外的 skills 包。技能也不会替目标仓发明模块目录。
 
-dsh（DeepSeek Harness）、OpenClaw、goose（Block）、magpie（yetone）——各自的 agent-dev 工程协作方式，不是它们的产品功能。
+## 怎么对另一个仓库运行
+
+1. 让 coding agent 读到本仓的 `.agents/skills/retrofit-agent-collab/SKILL.md`。
+2. 把目标仓库的路径交给它，让它按该文件里的步骤做，不要让它另加一套流程。
+3. 看报告：新建了什么、原样留了什么、还要人写什么。
+
+已经存在的文件不会被覆盖。目标仓不必是本仓的 fork。
+
+本仓自己的笔记门禁这样跑（Node 22+，不用安装依赖）：
+
+```bash
+node --experimental-strip-types .agents/notes/scripts/verify-agent-note-format.mts
+node --experimental-strip-types .agents/notes/scripts/verify-agent-note-classification.mts
+```
+
+## 本仓自己
+
+维护这个技能的人也用同一套骨架。目录图在 `docs/architecture-index.md`。步骤以 `SKILL.md` 为准。目标仓跑完后的形状见 `examples/after-retrofit.md`。
