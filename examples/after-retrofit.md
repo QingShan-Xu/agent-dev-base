@@ -1,6 +1,6 @@
 # 技能跑完之后
 
-目标仓有三条流水线，各有一个家。偏好轨道在旁边，不是第四条流水线。根上的 `AGENTS.md` 只做路由。原来就有的 `README.md` 留着。目标仓里没有任何大小写的 `readme.md` 时，技能才写一份短稿，等人改。
+目标仓有三条流水线，各有一个家。偏好轨道在旁边。根上的 `AGENTS.md` 只做路由。原来就有的 `README.md` 留着。目标仓里没有任何大小写的 `readme.md` 时，技能才写一份短稿，等人改。
 
 ```text
 your-repo/
@@ -9,9 +9,9 @@ your-repo/
 ├── CLAUDE.md -> AGENTS.md
 ├── LESSONS.md                     # 事后缺陷草稿。Seen、升格、降格只在这里
 ├── docs/
-│   ├── architecture-index.md      # 有什么、哪份文件说了算。重复偏好按这张表找家
+│   ├── architecture-index.md      # 有什么、哪份文件说了算；重复偏好按表找家
 │   ├── code-standards.md          # 从 LESSONS 升上来的稳定规矩
-│   └── postmortems/               # 事故。不是教训草稿
+│   └── postmortems/               # 事故（含骨架说明）
 │       └── README.md
 └── .agents/
     ├── prefs/                     # 当场纠正。怎么记、怎么升
