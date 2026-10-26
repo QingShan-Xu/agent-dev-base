@@ -1,21 +1,38 @@
 # agent-dev-base
 
-一套**通用的 coding-agent 开发底座**：给「人 + 外部 coding agent」一起养代码仓用的工程骨架，不是又一个面向终端用户的 agent 产品。
+本仓发布并维护一个技能。技能对着一个已经有代码的仓库，按固定步骤补上三条流水线。人读 `README.md`，agent 读 `AGENTS.md`。`AGENTS.md` 只放链接。
 
-## 要干嘛（一句话）
+不要克隆本仓来开新项目。这里也没有业务模板。
 
-把我们从 dsh / OpenClaw / goose / magpie 里挖到的共性，收成**可 clone、可改、可长规矩**的最小约定，让新仓不用从零发明「怎么少让 agent 翻车」。
+## 三条流水线
 
-## 更直白一点
+每条流水线有自己的家。细则不写进根上的 `AGENTS.md`。
 
-- **不是**：聊天机器人、ACP 产品功能、模型路由、菜单栏网关。
-- **是**：仓库里那一层——agent 读什么、怎么证明验过了、翻车怎么记下来、记满怎么变成硬规矩、合入怎么钉住审过的 head。
-- **默认抄的节奏**：薄 `AGENTS.md` 入口 → 提交正文写清「跑了什么 / Not tried」→ 夜间 `LESSONS` 复盘 → 连见多日升格进 `code-standards`；skills / hook / 审查 bot 按痛点再加，不一次性堆满。
+1. 决策。家在 `.agents/notes/`。记为什么、放弃了什么。目录、Status 行、必备小节由脚本检查。
+2. 教训。草稿在 `LESSONS.md`，升格后的规矩在 `docs/code-standards.md`。升格条件：至少 3 个不同日历日 Seen。细则只在 `LESSONS.md`。
+3. 提交验收。家在 `.agents/skills/commit-acceptance/SKILL.md`。写提交正文要记什么、什么样的检查太薄。这个技能会装进目标仓。
 
-## 本仓现状
+一条事实只放一个家。别的文件用链接指过去。
 
-刚建好空壳。下一步会往里塞最小可运行骨架（`AGENTS.md`、`LESSONS.md`、`docs/code-standards.md` 模板，以及可选的 CI / hook 开关说明）。
+## 不装的东西
 
-## 参考来源（研究笔记，不在本仓）
+`retrofit-agent-collab` 留在本仓，不拷进目标仓。不装 hooks、CI、CODEOWNERS、审查 bot、`--match-head-commit`、一个会话一个 worktree、`docs/subsystems/`。不替目标仓新建模块目录。目标仓的 `.agents/skills/` 里只有 `commit-acceptance`。
 
-dsh（DeepSeek Harness）、OpenClaw、goose（Block）、magpie（yetone）——各自的 agent-dev 工程协作方式，不是它们的产品功能。
+## 怎么对另一个仓库运行
+
+1. 让 coding agent 读本仓的 `.agents/skills/retrofit-agent-collab/SKILL.md`。
+2. 把目标仓库的路径交给它，按该文件里的步骤做。
+3. 看报告：三条流水线是新建的还是原来就有的，还有哪些要人写。
+
+已经存在的文件不覆盖。根目录如果已有任意大小写的 `readme.md`，就当作 README 已在，不另写一份 `README.md`。目标仓不必是本仓的 fork。
+
+本仓的笔记门禁这样跑（Node 22+，不用安装依赖）：
+
+```bash
+node --experimental-strip-types .agents/notes/scripts/verify-agent-note-format.mts
+node --experimental-strip-types .agents/notes/scripts/verify-agent-note-classification.mts
+```
+
+## 本仓自己
+
+维护技能的人用同一套骨架，包括 `commit-acceptance`。目录图在 `docs/architecture-index.md`。步骤以 `.agents/skills/retrofit-agent-collab/SKILL.md` 为准。目标仓跑完后的形状见 `examples/after-retrofit.md`。
