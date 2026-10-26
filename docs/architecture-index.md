@@ -12,7 +12,7 @@ Standing orders: [AGENTS.md](../AGENTS.md).
 | Standing orders, including what this repo refuses to add | [AGENTS.md](../AGENTS.md) |
 | Fill algorithm | [.agents/skills/retrofit-agent-collab/SKILL.md](../.agents/skills/retrofit-agent-collab/SKILL.md) |
 | On-the-spot corrections, and how a repeat is promoted | [.agents/prefs/README.md](../.agents/prefs/README.md) |
-| Lesson drafts, Seen, promote, and the demote return path | [LESSONS.md](../LESSONS.md) |
+| Lesson drafts, Seen, promote, and demote | [LESSONS.md](../LESSONS.md) |
 | Stable coding rules | [code-standards.md](code-standards.md) |
 | Accident write-ups | [postmortems/](postmortems/) |
 | Decision rationale, note format, lifecycle, classes | [.agents/notes/README.md](../.agents/notes/README.md) |
@@ -21,7 +21,17 @@ Standing orders: [AGENTS.md](../AGENTS.md).
 
 ## Prefs promotion
 
-Repeated preferences use the Authorities table as the lookup for which rule home to create, update, or delete. Recording and the human gate for hard-rule moves are in [.agents/prefs/README.md](../.agents/prefs/README.md).
+When a preference repeats, pick the home from Authorities and this lookup. How to record and when a human must confirm are in [.agents/prefs/README.md](../.agents/prefs/README.md).
+
+| Kind of preference | Usually goes to |
+| --- | --- |
+| Stable coding rule (always apply when writing code) | [code-standards.md](code-standards.md) |
+| Standing order or route for agents | [AGENTS.md](../AGENTS.md) or a nested `AGENTS.md` |
+| Decision that still matters after the diff | [.agents/notes/](../.agents/notes/README.md) |
+| Defect found in self-test or testing | [LESSONS.md](../LESSONS.md) (open a draft; do not promote a pref straight into LESSONS) |
+| Accident | [postmortems/](postmortems/) |
+
+Hard-rule edits to `code-standards.md` or standing orders wait for a human.
 
 ## Payload and installed copies
 
@@ -39,7 +49,7 @@ These pairs must stay byte-identical. The left path is what the skill copies int
 
 `templates/AGENTS.md` is the generic standing orders. Root `AGENTS.md` is that text plus the section `This repository`.
 
-`templates/docs/architecture-index.md` is the blank map the skill fills in a target. This file is the filled map for the skill repo. Both name prefs promotion as a lookup in the Authorities table.
+`templates/docs/architecture-index.md` is the blank map the skill fills in a target. This file is the filled map for the skill repo. Both name prefs promotion with an Authorities lookup plus a kind table.
 
 `templates/README.md` is a stub for a target that has no README. This repo's `README.md` is the human page for the skill.
 
@@ -56,10 +66,10 @@ Paths only, filled the same way the skill fills a target. What each path is for 
 - top-level: README.md
 - top-level: docs/
 - top-level: examples/
+- agents: AGENTS.md
 - agents: .agents/notes/AGENTS.md
 - agents: .agents/notes/archived/AGENTS.md
 - agents: .agents/notes/implemented/AGENTS.md
-- agents: AGENTS.md
 
 ## Not in this repo
 

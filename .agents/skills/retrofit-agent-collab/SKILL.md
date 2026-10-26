@@ -13,10 +13,10 @@ description: >-
 Install three pipelines in an existing repo, plus a prefs track beside them. Each pipeline has one home. Root `AGENTS.md` only routes. The how-to stays in the home.
 
 1. Decision: `.agents/notes/` and the verify scripts under `.agents/notes/scripts/`.
-2. Lessons: `LESSONS.md` and `docs/code-standards.md`. Promote and demote stay in `LESSONS.md`. Demotion is the return path on this pipeline. Accident write-ups go in `docs/postmortems/`.
+2. Lessons: `LESSONS.md` and `docs/code-standards.md`. Promote and demote stay in `LESSONS.md`. Demotion returns a promoted rule on this pipeline. Accident write-ups go in `docs/postmortems/`.
 3. Commit acceptance: `.agents/skills/commit-acceptance/SKILL.md`.
 
-Prefs is not a fourth pipeline. Home: `.agents/prefs/`. On-the-spot corrections. A repeat is promoted by looking up the rule home in `docs/architecture-index.md`. The how-to is in `.agents/prefs/README.md`.
+Prefs sits beside the pipelines. Home: `.agents/prefs/`. On-the-spot corrections. A repeat is promoted by looking up the rule home in `docs/architecture-index.md` (Authorities plus Prefs promotion). The how-to is in `.agents/prefs/README.md`.
 
 Do only the steps below. Templates are the bytes you copy. The scripts are the note gates you copy. Do not add files this document does not name.
 
@@ -43,7 +43,7 @@ Do not do any of the following, even if the target looks bare:
 - Do not install npm, pnpm, or other dependencies. The note gates use Node built-ins only.
 - Do not translate notes or add a `.zh.md` pairing gate.
 - Do not add a sample Agent Note, a sample preference, or a sample postmortem. The publish repo's example note is not a template.
-- Do not treat prefs as a fourth pipeline in the report or in `AGENTS.md`.
+- Do not list prefs as a fourth pipeline in the report or in `AGENTS.md`.
 - Do not overwrite an existing file. The exceptions are Step 5 and Step 6, and they are narrow.
 - Do not delete files.
 - Do not commit unless the user asked. If you commit, follow `templates/skills/commit-acceptance/SKILL.md` (the same text you copy into TARGET).

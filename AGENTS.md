@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Standing orders for coding agents. Read [docs/architecture-index.md](docs/architecture-index.md) before editing. This file routes. The how-to lives in the linked home. Do not copy a home's text into this file.
+Standing orders for coding agents. Read [docs/architecture-index.md](docs/architecture-index.md) before editing. This file is a route table. How-to lives in the linked home. Do not copy a home's text into this file.
 
 ## This repository
 
@@ -20,7 +20,7 @@ Do not publish another skill. Do not add hooks, CI, CODEOWNERS, review bots, `--
 | A defect shows up in self-test or testing | [LESSONS.md](LESSONS.md) |
 | You are about to commit, or the commit body must say what ran | [.agents/skills/commit-acceptance/SKILL.md](.agents/skills/commit-acceptance/SKILL.md) |
 
-Three pipelines: notes, LESSONS ↔ [docs/code-standards.md](docs/code-standards.md), commit-acceptance. Prefs sits beside them. It is not a fourth pipeline. Accident write-ups are [docs/postmortems/](docs/postmortems/), on the lessons pipeline, separate from lesson drafts.
+Three pipelines: notes, LESSONS ↔ [docs/code-standards.md](docs/code-standards.md), commit-acceptance. Prefs sits beside them for on-the-spot corrections. Accident write-ups live in [docs/postmortems/](docs/postmortems/), on the lessons pipeline, separate from lesson drafts.
 
 One fact, one home. Link to it. Do not copy it. The human overview is [README.md](README.md).
 
