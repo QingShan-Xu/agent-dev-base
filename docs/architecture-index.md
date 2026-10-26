@@ -11,11 +11,17 @@ Standing orders: [AGENTS.md](../AGENTS.md).
 | Human overview | [README.md](../README.md) |
 | Standing orders, including what this repo refuses to add | [AGENTS.md](../AGENTS.md) |
 | Fill algorithm | [.agents/skills/retrofit-agent-collab/SKILL.md](../.agents/skills/retrofit-agent-collab/SKILL.md) |
-| Lesson drafts, and when a draft is promoted | [LESSONS.md](../LESSONS.md) |
+| On-the-spot corrections, and how a repeat is promoted | [.agents/prefs/README.md](../.agents/prefs/README.md) |
+| Lesson drafts, Seen, promote, and the demote return path | [LESSONS.md](../LESSONS.md) |
 | Stable coding rules | [code-standards.md](code-standards.md) |
+| Accident write-ups | [postmortems/](postmortems/) |
 | Decision rationale, note format, lifecycle, classes | [.agents/notes/README.md](../.agents/notes/README.md) |
 | Commit acceptance | [.agents/skills/commit-acceptance/SKILL.md](../.agents/skills/commit-acceptance/SKILL.md) |
 | Shape of a repo after the skill runs | [examples/after-retrofit.md](../examples/after-retrofit.md) |
+
+## Prefs promotion
+
+Repeated preferences use the Authorities table as the lookup for which rule home to create, update, or delete. Recording and the human gate for hard-rule moves are in [.agents/prefs/README.md](../.agents/prefs/README.md).
 
 ## Payload and installed copies
 
@@ -25,13 +31,15 @@ These pairs must stay byte-identical. The left path is what the skill copies int
 | --- | --- |
 | `.agents/skills/retrofit-agent-collab/templates/LESSONS.md` | `LESSONS.md` |
 | `.agents/skills/retrofit-agent-collab/templates/docs/code-standards.md` | `docs/code-standards.md` |
-| `.agents/skills/retrofit-agent-collab/templates/notes/` | `.agents/notes/` except `proposed/process/2026-10-25-zh-notes-readme-later.md` and except `scripts/` |
+| `.agents/skills/retrofit-agent-collab/templates/docs/postmortems/README.md` | `docs/postmortems/README.md` |
+| `.agents/skills/retrofit-agent-collab/templates/prefs/README.md` | `.agents/prefs/README.md` |
+| `.agents/skills/retrofit-agent-collab/templates/notes/` | `.agents/notes/` except `proposed/process/2026-10-25-zh-notes-readme-later.md`, except `implemented/process/2026-10-26-prefs-beside-lessons.md`, and except `scripts/` |
 | `.agents/skills/retrofit-agent-collab/scripts/` | `.agents/notes/scripts/` |
 | `.agents/skills/retrofit-agent-collab/templates/skills/commit-acceptance/SKILL.md` | `.agents/skills/commit-acceptance/SKILL.md` |
 
 `templates/AGENTS.md` is the generic standing orders. Root `AGENTS.md` is that text plus the section `This repository`.
 
-`templates/docs/architecture-index.md` is the blank map the skill fills in a target. This file is the filled map for the skill repo.
+`templates/docs/architecture-index.md` is the blank map the skill fills in a target. This file is the filled map for the skill repo. Both name prefs promotion as a lookup in the Authorities table.
 
 `templates/README.md` is a stub for a target that has no README. This repo's `README.md` is the human page for the skill.
 

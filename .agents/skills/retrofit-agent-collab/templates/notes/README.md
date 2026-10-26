@@ -63,6 +63,8 @@ One class, from the closed set below. The same list is `AGENT_NOTE_CLASSES` in [
 
 Add or update a note in the same change when the reason will still matter after the diff is merged, and code, tests, and existing docs do not already say it. Work that is not done yet starts in `proposed/`. A decision that has already shipped starts in `implemented/`.
 
+An on-the-spot correction is not a note. Record it in `.agents/prefs/`.
+
 If a note already owns the decision, update that note. Do not open a second note that repeats it. A mechanical edit does not need a note.
 
 Do not edit a note into a different decision. Write a new note and link the two. An implemented note that is fully replaced may be merged into the note that now owns the decision, then deleted. Before deleting, copy every unique rationale, alternative, and consequence into the owner, and fix links that pointed at the old file. Git history does not replace that copy.

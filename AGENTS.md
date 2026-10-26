@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Standing orders for coding agents. Read [docs/architecture-index.md](docs/architecture-index.md) before editing. Link to each home from here. Do not copy a home's text into this file.
+Standing orders for coding agents. Read [docs/architecture-index.md](docs/architecture-index.md) before editing. This file routes. The how-to lives in the linked home. Do not copy a home's text into this file.
 
 ## This repository
 
@@ -10,20 +10,19 @@ This repo is already filled with that payload. [docs/architecture-index.md](docs
 
 Do not publish another skill. Do not add hooks, CI, CODEOWNERS, review bots, `--match-head-commit`, or a one-session-one-worktree rule.
 
-## One fact, one home
+## Route
 
-Each fact has one home. Link to it. Do not copy it.
-
-| Fact | Home |
+| When | Home |
 | --- | --- |
-| Standing orders | this file |
-| What exists, and which file is authoritative | [docs/architecture-index.md](docs/architecture-index.md) |
-| Why a decision was made, and what was given up | [.agents/notes/](.agents/notes/README.md) |
-| A failure noticed after the fact | [LESSONS.md](LESSONS.md) |
-| A stable rule promoted from a lesson | [docs/code-standards.md](docs/code-standards.md) |
-| Human overview | [README.md](README.md) |
+| You need which file is authoritative, or which home a repeated preference promotes into | [docs/architecture-index.md](docs/architecture-index.md) |
+| A decision will still matter after the diff | [.agents/notes/](.agents/notes/README.md) |
+| A human corrects you on the spot | [.agents/prefs/](.agents/prefs/README.md) |
+| A defect shows up in self-test or testing | [LESSONS.md](LESSONS.md) |
+| You are about to commit, or the commit body must say what ran | [.agents/skills/commit-acceptance/SKILL.md](.agents/skills/commit-acceptance/SKILL.md) |
 
-Commit acceptance: [.agents/skills/commit-acceptance/SKILL.md](.agents/skills/commit-acceptance/SKILL.md).
+Three pipelines: notes, LESSONS ↔ [docs/code-standards.md](docs/code-standards.md), commit-acceptance. Prefs sits beside them. It is not a fourth pipeline. Accident write-ups are [docs/postmortems/](docs/postmortems/), on the lessons pipeline, separate from lesson drafts.
+
+One fact, one home. Link to it. Do not copy it. The human overview is [README.md](README.md).
 
 ## Nested AGENTS.md
 
