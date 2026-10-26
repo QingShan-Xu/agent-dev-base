@@ -1,19 +1,22 @@
 ---
 name: retrofit-agent-collab
 description: >-
-  Fill an existing repository with three pipelines: Agent Notes, LESSONS to
-  code-standards, and a commit-acceptance skill. Use when given a path to a
-  repo that should gain that skeleton. Follow the steps in order. Do not copy
-  this skill into the target, and do not add hooks, CI, or review bots.
+  Fill an existing repository with three pipelines (Agent Notes, LESSONS to
+  code-standards with a demote return, commit-acceptance) and a prefs track
+  beside them. Use when given a path to a repo that should gain that skeleton.
+  Follow the steps in order. Do not copy this skill into the target, and do
+  not add hooks, CI, review bots, or a fourth pipeline.
 ---
 
 # Retrofit a repo for coding-agent collaboration
 
-Install three pipelines in an existing repo. Each pipeline has one home. Root `AGENTS.md` only links to those homes.
+Install three pipelines in an existing repo, plus a prefs track beside them. Each pipeline has one home. Root `AGENTS.md` only routes. The how-to stays in the home.
 
 1. Decision: `.agents/notes/` and the verify scripts under `.agents/notes/scripts/`.
-2. Lessons: `LESSONS.md` and `docs/code-standards.md`. The promote rule stays in `LESSONS.md`.
+2. Lessons: `LESSONS.md` and `docs/code-standards.md`. Promote and demote stay in `LESSONS.md`. Demotion is the return path on this pipeline. Accident write-ups go in `docs/postmortems/`.
 3. Commit acceptance: `.agents/skills/commit-acceptance/SKILL.md`.
+
+Prefs is not a fourth pipeline. Home: `.agents/prefs/`. On-the-spot corrections. A repeat is promoted by looking up the rule home in `docs/architecture-index.md`. The how-to is in `.agents/prefs/README.md`.
 
 Do only the steps below. Templates are the bytes you copy. The scripts are the note gates you copy. Do not add files this document does not name.
 
@@ -32,13 +35,15 @@ Stop if `TARGET` is missing or is not a directory. Do not create `TARGET`. Do no
 Do not do any of the following, even if the target looks bare:
 
 - Do not copy this skill (`retrofit-agent-collab`) into `TARGET`. The only skill you install is `commit-acceptance`, and only from the file mapping.
+- Do not install a retro skill, a prefs skill, or any other skill. Do not add a hook or a scheduled job for promote, demote, or archive.
 - Do not create `docs/subsystems/`.
 - Do not add GitHub Actions, other CI, git hooks, Husky, lint-staged, CODEOWNERS, or review bots.
 - Do not add `--match-head-commit`, a required head pin, or a one-session-one-worktree rule.
 - Do not invent module directories, packages, or per-module `AGENTS.md` files. Documenting the optional pattern is already in the root `AGENTS.md` template.
 - Do not install npm, pnpm, or other dependencies. The note gates use Node built-ins only.
 - Do not translate notes or add a `.zh.md` pairing gate.
-- Do not add a sample Agent Note. The publish repo's example note is not a template.
+- Do not add a sample Agent Note, a sample preference, or a sample postmortem. The publish repo's example note is not a template.
+- Do not treat prefs as a fourth pipeline in the report or in `AGENTS.md`.
 - Do not overwrite an existing file. The exceptions are Step 5 and Step 6, and they are narrow.
 - Do not delete files.
 - Do not commit unless the user asked. If you commit, follow `templates/skills/commit-acceptance/SKILL.md` (the same text you copy into TARGET).
@@ -48,7 +53,7 @@ Do not do any of the following, even if the target looks bare:
 - Copy template bytes unchanged. Do not translate, reformat, or improve a file while copying.
 - One fact, one home. The templates already place each fact. Do not paste a second copy into `README.md`, `AGENTS.md`, or the index.
 - The probe section is paths only. Do not describe what a directory is for.
-- If a retrofit failure is worth remembering, say so in the report. Do not invent a `LESSONS.md` entry unless the user asked.
+- If a retrofit failure is worth remembering, say so in the report. Do not invent a `LESSONS.md` entry unless the user asked. A session correction is a pref, not a lesson.
 
 ## File mapping
 
@@ -63,6 +68,8 @@ Classes: `feature`, `bug-fix`, `simplification`, `architecture`, `process`, `tes
 | `templates/LESSONS.md` | `LESSONS.md` |
 | `templates/docs/architecture-index.md` | `docs/architecture-index.md` |
 | `templates/docs/code-standards.md` | `docs/code-standards.md` |
+| `templates/docs/postmortems/README.md` | `docs/postmortems/README.md` |
+| `templates/prefs/README.md` | `.agents/prefs/README.md` |
 | `templates/notes/README.md` | `.agents/notes/README.md` |
 | `templates/notes/AGENTS.md` | `.agents/notes/AGENTS.md` |
 | `templates/notes/implemented/AGENTS.md` | `.agents/notes/implemented/AGENTS.md` |
@@ -103,9 +110,13 @@ Create `.agents/notes/scripts/` if it is missing.
 
 Create `docs/` if it is missing.
 
+Create `docs/postmortems/` if it is missing.
+
+Create `.agents/prefs/` if it is missing.
+
 Create `.agents/skills/commit-acceptance/` if it is missing.
 
-Do not create any other directory. Do not create `.agents/skills/retrofit-agent-collab/`.
+Do not create any other directory. Do not create `.agents/skills/retrofit-agent-collab/`. Do not create `.agents/prefs/archived/` until a later retro actually archives a file.
 
 ### Step 3: Copy missing files
 
@@ -166,7 +177,7 @@ Rules:
 - One `manifest:` bullet per existing path, and only these names, at any depth except `/.git/` and `/node_modules/`: `package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `pom.xml`, `build.gradle`, `build.gradle.kts`, `Gemfile`, `composer.json`, `requirements.txt`.
 - Omit a category that has zero rows. Do not write `none`.
 - Paths only. No descriptions.
-- Do not edit the authorities table.
+- Do not edit the authorities table. Do not edit the `## Prefs promotion` section.
 - Do not edit the `<!-- human-fill -->` block.
 - The file must not contain the string `probe-fill` when you finish.
 
@@ -206,8 +217,12 @@ Git: <yes or no>
 `Pipelines` names the three homes. For each, write `created` when every mapped file of that pipeline was created this run, `kept` when every one was already present, or `mixed` and rely on Created and Kept for the paths.
 
 - Decision: `.agents/notes/` (notes tree and `.agents/notes/scripts/`)
-- Lessons: `LESSONS.md`, `docs/code-standards.md`
+- Lessons: `LESSONS.md`, `docs/code-standards.md`, `docs/postmortems/README.md`
 - Commit acceptance: `.agents/skills/commit-acceptance/SKILL.md`
+
+Then one line that is not a pipeline. Use the same `created` / `kept` / `mixed` words:
+
+- Prefs track: `.agents/prefs/README.md`
 
 `Human must fill` includes:
 
@@ -217,7 +232,7 @@ Git: <yes or no>
 - `CLAUDE.md` when Step 4 left it for a human
 - gate failures on notes that were already present
 
-`Not tried` is the non-goals list: copying `retrofit-agent-collab` into TARGET, `docs/subsystems/`, hooks, CI, CODEOWNERS, review bots, `--match-head-commit`, one worktree per session, invented modules.
+`Not tried` is the non-goals list: copying `retrofit-agent-collab` into TARGET, a retro skill, any skill other than `commit-acceptance`, `docs/subsystems/`, hooks, CI, CODEOWNERS, review bots, `--match-head-commit`, one worktree per session, invented modules, a fourth pipeline.
 
 ## Optional parent-directory AGENTS.md
 
