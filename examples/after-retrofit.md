@@ -1,6 +1,6 @@
 # 技能跑完之后
 
-目标仓有三条流水线，各有一个家。根上的 `AGENTS.md` 只链接过去。原来就有的 `README.md` 会留着；只有目标仓没有任何大小写形式的 `readme.md` 时，技能才写入一份待人改的短稿。
+目标仓有三条流水线，各有一个家。根上的 `AGENTS.md` 只放链接。原来就有的 `README.md` 留着。目标仓里没有任何大小写的 `readme.md` 时，技能才写一份短稿，等人改。
 
 ```text
 your-repo/
@@ -34,6 +34,6 @@ your-repo/
 
 `<class>` 只有这六个：`feature`、`bug-fix`、`simplification`、`architecture`、`process`、`testing`。
 
-已经存在的父目录可以另有一份 `AGENTS.md`。技能默认不新建目录，也不新建这份文件，除非人明确要求。
+已经存在的父目录可以另有一份 `AGENTS.md`。人没有明确要求时，技能不新建目录，也不新建这份文件。
 
-技能不会把 `.agents/skills/retrofit-agent-collab/` 拷进目标仓。那份技能只住在本发布仓。
+`.agents/skills/retrofit-agent-collab/` 只住在本发布仓，不拷进目标仓。

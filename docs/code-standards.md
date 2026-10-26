@@ -1,8 +1,8 @@
 # Code standards
 
-Stable rules promoted from [LESSONS.md](../LESSONS.md). The promote rule lives in that file. This file does not restate it.
+Stable rules promoted from [LESSONS.md](../LESSONS.md). The promote rule is in that file. Do not copy the promote rule here.
 
-Agent Note format lives in [.agents/notes/README.md](../.agents/notes/README.md). Do not copy it here.
+Agent Note format is in [.agents/notes/README.md](../.agents/notes/README.md). Do not copy it here.
 
 ## Promoted rules
 

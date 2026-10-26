@@ -1,6 +1,6 @@
 # Architecture index
 
-Map of this repository: what exists, and which file is the authority. This file does not restate those documents.
+Map of this repository: what exists, and which file is the authority. Rule text stays in the file named here.
 
 Standing orders: [AGENTS.md](../AGENTS.md).
 

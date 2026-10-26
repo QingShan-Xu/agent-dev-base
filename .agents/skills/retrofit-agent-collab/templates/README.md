@@ -1,5 +1,5 @@
 # Repository
 
-Human overview of this repository. Replace this heading and the next sentence with what the project is.
+What this repository is, for humans. Replace this heading and the next sentence with the project.
 
 Agents start at [AGENTS.md](AGENTS.md). The map of authorities is [docs/architecture-index.md](docs/architecture-index.md).

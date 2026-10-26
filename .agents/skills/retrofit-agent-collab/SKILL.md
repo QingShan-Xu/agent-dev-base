@@ -11,21 +11,21 @@ description: >-
 
 Install three pipelines in an existing repo. Each pipeline has one home. Root `AGENTS.md` only links to those homes.
 
-1. **Decision** — `.agents/notes/` and the verify scripts under `.agents/notes/scripts/`.
-2. **Lessons** — `LESSONS.md` and `docs/code-standards.md`. The promote rule stays in `LESSONS.md`.
-3. **Commit acceptance** — `.agents/skills/commit-acceptance/SKILL.md`.
+1. Decision: `.agents/notes/` and the verify scripts under `.agents/notes/scripts/`.
+2. Lessons: `LESSONS.md` and `docs/code-standards.md`. The promote rule stays in `LESSONS.md`.
+3. Commit acceptance: `.agents/skills/commit-acceptance/SKILL.md`.
 
-The steps below are the whole job. Templates are the bytes you copy. The scripts are the note gates you copy. Do not add files this document does not name.
+Do only the steps below. Templates are the bytes you copy. The scripts are the note gates you copy. Do not add files this document does not name.
 
 ## Contract
 
-**Input:** `TARGET`, the path to an existing repository directory (absolute or relative). The repo may already contain code and a README. It does not need to be a git checkout of this skill repo.
+Input: `TARGET`, the path to an existing repository directory (absolute or relative). The repo may already contain code and a README. It does not need to be a git checkout of this skill repo.
 
-**SKILL_ROOT:** the directory that contains this `SKILL.md`. Read templates from `SKILL_ROOT/templates/` and scripts from `SKILL_ROOT/scripts/`.
+`SKILL_ROOT`: the directory that contains this `SKILL.md`. Read templates from `SKILL_ROOT/templates/` and scripts from `SKILL_ROOT/scripts/`.
 
-**Output:** missing files created inside `TARGET`, then a retrofit report. You are editing `TARGET` only.
+Output: missing files created inside `TARGET`, then a retrofit report. You are editing `TARGET` only.
 
-**Stop immediately** if `TARGET` is missing or is not a directory. Do not create `TARGET`. Do not run `git init`. Do not clone this skill repo into `TARGET`.
+Stop if `TARGET` is missing or is not a directory. Do not create `TARGET`. Do not run `git init`. Do not clone this skill repo into `TARGET`.
 
 ## Non-goals
 
@@ -81,7 +81,7 @@ The `README.md` row is `present` when the target root already has a file whose n
 
 ## Algorithm
 
-### Step 1 — Probe
+### Step 1: Probe
 
 Record this inventory in your notes for the report. Do not write it into `TARGET` as a new file.
 
@@ -95,7 +95,7 @@ Also record:
 - `CLAUDE.md`: `absent`, `symlink` whose target is exactly `AGENTS.md`, or `other`
 - whether `docs/subsystems/` exists (leave it either way)
 
-### Step 2 — Create missing directories
+### Step 2: Create missing directories
 
 For each lifecycle and each class, create `.agents/notes/<lifecycle>/<class>/` if that directory is missing.
 
@@ -107,13 +107,13 @@ Create `.agents/skills/commit-acceptance/` if it is missing.
 
 Do not create any other directory. Do not create `.agents/skills/retrofit-agent-collab/`.
 
-### Step 3 — Copy missing files
+### Step 3: Copy missing files
 
 For each row in the file mapping, if the destination is `missing`, copy the source bytes to the destination and record `Created`. If the destination is `present`, record `Kept` and do not open it. The `README.md` row stays `present` under [README name](#readme-name) when the root file is `readme.md` or `Readme.md`.
 
 Remember whether this step created `docs/architecture-index.md`. Step 6 runs only then.
 
-### Step 4 — CLAUDE.md symlink
+### Step 4: CLAUDE.md symlink
 
 Work from `TARGET`.
 
@@ -121,7 +121,7 @@ Work from `TARGET`.
 - If `CLAUDE.md` is a symlink and `readlink CLAUDE.md` prints `AGENTS.md`: record `Kept`.
 - Otherwise: record that a human must decide. Do not replace the file.
 
-### Step 5 — Wire AGENTS.md files to the index
+### Step 5: Wire AGENTS.md files to the index
 
 After Step 3, visit every `AGENTS.md` found in Step 1, plus `AGENTS.md` if Step 3 created it. Skip paths containing `/.git/` or `/node_modules/`.
 
@@ -147,11 +147,11 @@ Record `Wired` and the path. Do not insert the paragraph twice.
 
 The templates already contain an index link, so a file this run copied is a no-op here.
 
-### Step 6 — Fill the probe section
+### Step 6: Fill the probe section
 
 Skip this step if Step 3 did not create `docs/architecture-index.md`.
 
-In the file this run created, replace the block from the line `<!-- probe-fill -->` through the line `<!-- /probe-fill -->`, inclusive, with bullets from the tree **as it is now**:
+In the file this run created, replace the block from the line `<!-- probe-fill -->` through the line `<!-- /probe-fill -->`, inclusive, with bullets from the tree as it is now:
 
 ```markdown
 - top-level: <name>
@@ -170,7 +170,7 @@ Rules:
 - Do not edit the `<!-- human-fill -->` block.
 - The file must not contain the string `probe-fill` when you finish.
 
-### Step 7 — Run the note gates
+### Step 7: Run the note gates
 
 From `TARGET`:
 
@@ -184,7 +184,7 @@ If Node rejects `--experimental-strip-types` as unrecognized, run those two path
 - Both exit 0: record the stdout lines under Gate.
 - Either exits non-zero: copy stderr into the report. Do not edit a note that was already in `TARGET` before this run. Do not hand-edit a file you copied from a template to silence the gate. Stop after the report.
 
-### Step 8 — Report
+### Step 8: Report
 
 Use these headings. List paths. If a section has no rows, write `none`.
 
@@ -212,7 +212,7 @@ Git: <yes or no>
 `Human must fill` includes:
 
 - any file that still contains `human-fill`, with the marker named
-- `docs/code-standards.md` when `## Promoted rules` is still `None yet.` — say that nothing was promoted today
+- `docs/code-standards.md` when `## Promoted rules` is still `None yet.`. Say that nothing was promoted today
 - `README.md` when this run created it from the stub
 - `CLAUDE.md` when Step 4 left it for a human
 - gate failures on notes that were already present

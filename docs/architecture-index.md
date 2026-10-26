@@ -1,6 +1,6 @@
 # Architecture index
 
-What exists in this repository, and which file is authoritative. This file does not restate those documents.
+What is in this repository, and which file is the authority. Rule text stays in the file named here.
 
 Standing orders: [AGENTS.md](../AGENTS.md).
 
@@ -19,7 +19,7 @@ Standing orders: [AGENTS.md](../AGENTS.md).
 
 ## Payload and installed copies
 
-These pairs must stay byte-identical. The left path is what the skill copies into some other repo. The right path is this repo already filled.
+These pairs must stay byte-identical. The left path is what the skill copies into another repo. The right path is this repo, already filled.
 
 | Payload | Installed in this repo |
 | --- | --- |
@@ -39,7 +39,7 @@ These pairs must stay byte-identical. The left path is what the skill copies int
 
 ## What is in the tree
 
-Filled the same way the skill fills a target: paths only. Roles are in the table above.
+Paths only, filled the same way the skill fills a target. What each path is for is in the table above.
 
 - top-level: .agents/
 - top-level: AGENTS.md
